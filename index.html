@@ -11,6 +11,31 @@
 </body>
 
 <script>
-    
+
+    async function getContent() {
+        try{
+            const response = await fetch('https://api.github.com/users/FelipeFerreiraSS')
+            const data = await response.json()
+
+            document.querySelector('main').innerHTML = data.name
+
+            show(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    getContent()
+
+    function show(users) {
+        let output = ''
+
+        for(let user of users) {
+            output += `<p>&{user.name}</p>`
+        }
+
+        document.querySelector('main').innerHTML = output
+    }
+
 </script>
 </html>
